@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-abyss: #060709;
+  --surface-dossier: #101318;
+  --surface-panel: #161b22;
+  --surface-paper: #1b1916;
+  --ink-paper: #dfd7c5;
+  --ink-muted: #948e80;
+  --amber-crt: #d4943a;
+  --crimson-alert: #a82929;
+  --phosphor-ok: #4d9e6f;
+  --border-subtle: rgba(223, 215, 197, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-abyss);
+  color: var(--ink-paper);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Grano cinematográfico sutil (no bloquea clics ni baja rendimiento) */
+.film-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  opacity: 0.045;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.25) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+}
+
+/* Scanlines para pantallas CRT y terminales */
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.22) 3px,
+    rgba(0, 0, 0, 0.22) 4px
+  );
+}
+
+/* Viñeta atmosférica reactiva a salud/cordura/peligro */
+.horror-vignette {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  transition: box-shadow 0.35s ease, opacity 0.35s ease;
+}
+
+/* Botones estandarizados del Design System */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold tracking-widest uppercase
+         bg-[#d4943a] text-[#090a0c] border border-[#e8ae58]/60 rounded-sm
+         transition-all duration-150 hover:bg-[#e5a64d] hover:shadow-[0_0_20px_rgba(212,148,58,0.28)]
+         active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4943a]
+         disabled:opacity-45 disabled:cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium tracking-wider uppercase
+         bg-[#161b22] text-[#dfd7c5] border border-[#dfd7c5]/20 rounded-sm
+         transition-all duration-150 hover:bg-[#1e252e] hover:border-[#d4943a]/50
+         active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4943a]
+         disabled:opacity-45 disabled:cursor-not-allowed;
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold tracking-wider uppercase
+         bg-[#a82929]/90 text-[#f5ece4] border border-[#d64545]/50 rounded-sm
+         transition-all duration-150 hover:bg-[#be3131] hover:shadow-[0_0_20px_rgba(168,41,41,0.4)]
+         active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d64545]
+         disabled:opacity-45 disabled:cursor-not-allowed;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium tracking-wider uppercase
+         text-[#948e80] hover:text-[#dfd7c5] hover:bg-white/5 rounded-sm
+         transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4943a];
+}
+
+/* Superficie de expediente clasificado */
+.dossier-surface {
+  background: linear-gradient(160deg, rgba(20, 23, 29, 0.97) 0%, rgba(11, 13, 17, 0.98) 100%);
+  border: 1px solid rgba(223, 215, 197, 0.16);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Scrollbar oscura discreta */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0d11;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b313c;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4943a;
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
+}
+
+@keyframes glitchFlicker {
+  0%, 92%, 100% { opacity: 1; transform: translateX(0); }
+  93% { opacity: 0.65; transform: translateX(-2px); }
+  95% { opacity: 0.9; transform: translateX(2px); }
+  97% { opacity: 0.55; transform: translateX(-1px); }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 3.6s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitchFlicker 5s infinite;
+}

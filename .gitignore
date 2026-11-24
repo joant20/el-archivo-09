@@ -1,0 +1,14 @@
+# Entornos y secretos
+.env
+.env.local
+
+# Dependencias y builds
+node_modules/
+frontend/dist/
+backend/coverage/
+releases/
+
+# Logs y temporales
+*.log
+.DS_Store
+Thumbs.db
